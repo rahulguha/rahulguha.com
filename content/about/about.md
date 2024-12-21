@@ -5,7 +5,8 @@ date = "2024-12-20"
 aliases = ["about-us", "about-me", "contact"]
 author = "Rahul Guha"
 +++
-
+Architect by brain and developer by heart - I thrive solving technology problems - enterprise scale.
+<!-- more -->
 [Email](mailto:rahulguha@duck.com)
 
 [Github Repo](https://github.com/rahulguha) !
