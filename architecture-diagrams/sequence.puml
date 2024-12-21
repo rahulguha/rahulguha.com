@@ -1,0 +1,27 @@
+@startuml
+autonumber
+title "Build a hugo site and deploy to Github pages"
+entity "HUGO \nWEBSITE" as Hugo
+collections "Hugo \nThemes" as themes
+boundary "Dev \nLaptop" as local
+boundary "Git Repo" as repo
+boundary "GitHub Actions" as actions 
+boundary "Github Pages" as pages
+
+
+local ->Hugo: download and install hugo
+local --> local: check hugo version \nand install
+local -> themes: lookup and select theme
+local -> local: setup theme
+local -> local: build and test site \nat localhost:1313
+
+repo --> repo: create repo \npull locally \nor add origin
+repo ->pages: setup github pages \nsetup to deploy through Actions
+local -> local: create workflow file \nunder .github/workflows 
+local ->repo: add, commit and push 
+repo ->actions: trigger action
+action -> pages: deploy
+
+local -->local: check deployment \n@<yourname>.github.io.<your-site-name>
+
+@enduml

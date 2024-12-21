@@ -18,6 +18,7 @@ aliases = ["SSR"]
 I will describe how this site was built and rendered for free 
 <!--more-->
 [HUGO](https://gohugo.io) was the base framework 
+![tSequence Diagram:inline](/images/sequence.png)
 
 <!-- 
 <p><span class="nowrap"><span class="emojify">🙈</span> <code>:see_no_evil:</code></span>  <span class="nowrap"><span class="emojify">🙉</span> <code>:hear_no_evil:</code></span>  <span class="nowrap"><span class="emojify">🙊</span> <code>:speak_no_evil:</code></span></p>
