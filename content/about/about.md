@@ -1,12 +1,18 @@
 +++
-title = "About"
+title = "About Me"
 description = "This is about Rahul Guha"
 date = "2024-12-20"
 aliases = ["about-us", "about-me", "contact"]
 author = "Rahul Guha"
 +++
-Architect by brain and developer by heart - I thrive solving technology problems - enterprise scale.
+{{< introbio >}}
 <!-- more -->
+
+I lead a global team of 25+ Architects and Engineers focusing on firm’s Identity and Access Management that spans across Customer and Workforce. Previously I delivered multiple cloud migration initiatives with a focus on Data Governance, Cloud Native Privileged Access Management, API Security, DevSecOps and Secure Code practice. 
+
+
+
+
 [Email](mailto:rahulguha@duck.com)
 
 [Github Repo](https://github.com/rahulguha) !

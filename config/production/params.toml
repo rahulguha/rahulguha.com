@@ -15,7 +15,7 @@ description = "This is a place for technology articles and random rants." # Set 
 ga_analytics = "G-4EN1BJ4R4J"
 
 # Google tag manager
-google_tag_manager_id = ""
+google_tag_manager_id = "G-4EN1BJ4R4J"
 
 # Baidu analytics Id
 # baidu_analytics = "XXXXXXXX"

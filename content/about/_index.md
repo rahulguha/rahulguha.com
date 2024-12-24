@@ -1,6 +1,6 @@
 +++
-aliases = ["tech", "tech-articles", "tech-blog"]
-title = "Tech Blogs"
+aliases = ["about", "about-me", "resume"]
+title = "About Me"
 author = "Rahul Guha"
 tags = ["about"]
 +++
