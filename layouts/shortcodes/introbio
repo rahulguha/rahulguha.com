@@ -1,3 +1,0 @@
-{{ $s := site.Params }}
-{{- $introDescription := $s.introDescription }}
-<b>{{- $introDescription }}</b>

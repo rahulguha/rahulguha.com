@@ -5,7 +5,7 @@ title = "Rahul Guha"  # Edit directly from config/_default/languages.toml # alte
 copyright = "Copyright © 2024, Rahul Guha; all rights reserved."
 # canonifyurls = true
 # favicon = "icons/favicon-32x32.png"
-theme = "hugo-clarity"
+theme = "PaperMod"
 disqusShortname = ""
 
 DefaultContentLanguage = "en"
