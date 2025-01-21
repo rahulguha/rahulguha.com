@@ -4,6 +4,7 @@ title: Rahul Guha
 homeinfo: Whatever
 copyright: Copyright @Rahul Guha
 theme: ["PaperMod"]
+enableEmoji: true
 params:
   assets:
     disableHLJS: false
@@ -26,7 +27,9 @@ params:
       - name: "Technology Blogs"
         url: "/tech"
       - name: "Random Rant"
-        url: "/rant"
+        url: "/rants"
+      - name: "How this Site was built"
+        url: "/tech/how-this-site-is-built/"
         # url: "https://github.com/"
 
   socialIcons: # optional
@@ -46,7 +49,7 @@ menu:
   main:
     - identifier: tech
       name: tech
-      url: /tech/
+      url: /tags/tech/
       weight: 10
     - identifier: rants
       name: rants
