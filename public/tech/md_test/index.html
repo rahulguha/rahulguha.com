@@ -5,11 +5,39 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Categories | Rahul Guha</title>
+<title>Your Post Title | Rahul Guha</title>
 <meta name="keywords" content="">
-<meta name="description" content="">
+<meta name="description" content="
+    
+flowchart TD
+    subgraph Setup
+        A[Setup ubuntu-latest]
+        B[Install Hugo CLI]
+        C[Install sass]
+        A --&gt; B
+        B --&gt; C
+    end
+
+    subgraph Build
+        D[Get latest from main]
+        E[Install node & dependencies]
+        F[Build with hugo & copy to public]
+        D --&gt; E
+        E --&gt;|15min| F
+    end
+
+    subgraph Deploy
+        G[Setup ubuntu]
+        H[Copy to github pages]
+        G --&gt; H
+    end
+
+    C --&gt; D
+    F --&gt; G
+
+">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/categories/">
+<link rel="canonical" href="http://localhost:1313/tech/md_test/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.23008b09bd00577341e0f373d3360479f325d3855f8cab1bf85a222f60757b71.css" integrity="sha256-IwCLCb0AV3NB4PNz0zYEefMl04VfjKsb&#43;FoiL2B1e3E=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
@@ -18,8 +46,7 @@
 <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/categories/index.xml">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/categories/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/tech/md_test/">
 <noscript>
     <style>
         #theme-toggle,
@@ -68,7 +95,7 @@
 </script>
 </head>
 
-<body class="list" id="top">
+<body class="" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.body.classList.add('dark');
@@ -137,12 +164,55 @@
     </nav>
 </header>
 <main class="main">
-<header class="page-header">
-    <h1>Categories</h1>
-</header>
 
-<ul class="terms-tags">
-</ul>
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Your Post Title
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><div class="mermaid">
+    
+flowchart TD
+    subgraph Setup
+        A[Setup ubuntu-latest]
+        B[Install Hugo CLI]
+        C[Install sass]
+        A --> B
+        B --> C
+    end
+
+    subgraph Build
+        D[Get latest from main]
+        E[Install node & dependencies]
+        F[Build with hugo & copy to public]
+        D --> E
+        E -->|15min| F
+    end
+
+    subgraph Deploy
+        G[Setup ubuntu]
+        H[Copy to github pages]
+        G --> H
+    end
+
+    C --> D
+    F --> G
+
+</div>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
     </main>
     
 <footer class="footer">

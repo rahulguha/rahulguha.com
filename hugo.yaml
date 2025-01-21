@@ -1,4 +1,68 @@
-baseURL: https://example.org/
+baseURL: https://rahulguha.com/
 languageCode: en-us
 title: Rahul Guha
+homeinfo: Whatever
+copyright: Copyright @Rahul Guha
+theme: ["PaperMod"]
+params:
+  assets:
+    disableHLJS: false
+    customJS:
+      - "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs"
+  label:
+    # icon: "/logo/logo.ico"
+    icon: "/logo.png"
+    text: " "
+  profileMode:
+    enabled: true
+    title: "<Rahul Guha>" # optional default will be site title
+    subtitle: "Solve problems through technology and simplicity"
+    imageUrl: "/home/rahul.jpg" # optional
+    imageTitle: "Rahul Guha Home Page Image" # optional
+    imageWidth: 220
+    imageHeight: 300
+    
+    buttons:
+      - name: "Technology Blogs"
+        url: "/tech"
+      - name: "Random Rant"
+        url: "/rant"
+        # url: "https://github.com/"
 
+  socialIcons: # optional
+    - name: "<platform>"
+      url: "<link>"
+    - name: "<platform 2>"
+      url: "<link2>"
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+    style: monokai
+
+menu:
+  main:
+    - identifier: tech
+      name: tech
+      url: /tech/
+      weight: 10
+    - identifier: rants
+      name: rants
+      url: /rants/
+      weight: 11
+    - identifier: books
+      name: books
+      url: /books/
+      weight: 12
+
+    - identifier: tags
+      name: tags
+      url: /tags/
+      weight: 20
+    # - identifier: example
+    #   name: example.org
+    #   url: https://example.org
+    #   weight: 30
+  
