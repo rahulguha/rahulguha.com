@@ -10,6 +10,8 @@ summary: This will explain various aspects of LLM be used to build a product
 Mermaid: True
 weight: 1
 ---
+### Github Repo
+``` https://github.com/rahulguha/podcast_monitor ```
 ### Background and Intent
 I am not here to build a real product (although it may go in that direction 😄) - but main intents are the followings:
 - Wanted to familiarize with LLM as a technology
