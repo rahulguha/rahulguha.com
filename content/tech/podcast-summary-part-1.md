@@ -152,6 +152,7 @@ This is first time I coded with significant help from Claude, OpenGPT, Gemini et
 
 Following are the plans (not in same order) to enhance the scope of the project:
 - Include Youtube Videos in the list of podcasts
+- Implement RAG with the transcripts to build a chat bot
 - Experiment with other models to summarize the transcripts
 - Accomplish same using agentic frameworks
 - Look at other deployment options
