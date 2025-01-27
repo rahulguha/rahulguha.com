@@ -12,6 +12,7 @@ weight: 1
 ---
 ### Github Repo
 ``` https://github.com/rahulguha/podcast_monitor ```
+<img src="/tech/overall-picture.png" alt="Component Diagram"  height="500">
 ### Background and Intent
 I am not here to build a real product (although it may go in that direction 😄) - but main intents are the followings:
 - Wanted to familiarize with LLM as a technology
