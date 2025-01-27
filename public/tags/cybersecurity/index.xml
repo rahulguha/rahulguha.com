@@ -7,7 +7,7 @@
     <generator>Hugo -- 0.140.0</generator>
     <language>en-us</language>
     <copyright>Copyright @Rahul Guha</copyright>
-    <lastBuildDate>Thu, 19 Dec 2024 18:15:07 -0600</lastBuildDate>
+    <lastBuildDate>Sun, 26 Jan 2025 11:13:35 -0600</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/cybersecurity/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How This Site Is Built</title>
@@ -15,6 +15,13 @@
       <pubDate>Thu, 19 Dec 2024 18:15:07 -0600</pubDate>
       <guid>http://localhost:1313/tech/how-this-site-is-built/</guid>
       <description>How this was built.</description>
+    </item>
+    <item>
+      <title>Podcast Summary Part 1</title>
+      <link>http://localhost:1313/tech/podcast-summary-part-1/</link>
+      <pubDate>Sun, 26 Jan 2025 11:13:35 -0600</pubDate>
+      <guid>http://localhost:1313/tech/podcast-summary-part-1/</guid>
+      <description>This will explain various aspects of LLM be used to build a product</description>
     </item>
   </channel>
 </rss>

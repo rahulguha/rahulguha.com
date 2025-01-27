@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Podcast Summary Part 1: Basics | Rahul Guha</title>
+<meta name="keywords" content="tech, cybersecurity, LLM">
+<meta name="description" content="This will explain various aspects of LLM be used to build a product">
+<meta name="author" content="Rahul Guha">
+<link rel="canonical" href="http://localhost:1313/tech/podcast-summary-part-1/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.23008b09bd00577341e0f373d3360479f325d3855f8cab1bf85a222f60757b71.css" integrity="sha256-IwCLCb0AV3NB4PNz0zYEefMl04VfjKsb&#43;FoiL2B1e3E=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/tech/podcast-summary-part-1/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs" type="module"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    mermaid.initialize({ 
+      startOnLoad: true,
+      theme: 'neutral',
+      securityLevel: 'loose'
+    });
+  });
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+
+            
+            
+            <a href="http://localhost:1313/" accesskey="h" title="  (Alt + H)">
+                <img src="http://localhost:1313/logo.png" alt="" aria-label="logo"
+                    height="30"> </a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/tags/tech/" title="tech">
+                    <span>tech</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/rants/" title="rants">
+                    <span>rants</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/books/" title="books">
+                    <span>books</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="tags">
+                    <span>tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Podcast Summary Part 1: Basics
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2025-01-26 11:13:35 -0600 CST'>January 26, 2025</span>&nbsp;·&nbsp;Rahul Guha
+
+</div>
+  </header> 
+  <div class="post-content"><h3 id="background-and-intent">Background and Intent<a hidden class="anchor" aria-hidden="true" href="#background-and-intent">#</a></h3>
+<p>I am not here to build a real product (although it may go in that direction 😄) - but main intents are the followings:</p>
+<ul>
+<li>Wanted to familiarize with LLM as a technology</li>
+<li>Bring in my decades of industry and software development experience togather to see how those can marry and live together - and hopefully become almost happy partners (why not ?)</li>
+<li>Teach myself what to expect and where to be cautious and patient while dealing with LLM and agentic world</li>
+<li>Execute thought experiement on how this can help an Architect - especially with cybersecurity in mind
+Simply put - these series of posts won&rsquo;t be a detailed howto guides (although I will include github repos) - also don&rsquo;t expect high quality code as coding is NOT the topmost interest. What you can expect is connecting dots across various architectural constructs and puzzles. For example - running a model locally or codelab is great - but how it can mesh with established cloud and devops processes.
+It will be multipart - I expect to build on top of one theme and add more scope over weeks.</li>
+</ul>
+<h3 id="requirements">Requirements<a hidden class="anchor" aria-hidden="true" href="#requirements">#</a></h3>
+<p><strong>High Level Story:</strong>
+As an avid podcast listener, I want to monitor few podcasts for new episodes so that I can get notified when a new episode is dropped.</p>
+<p><strong>Given</strong>
+I have a list of podcasts in a config file
+<strong>When</strong>
+Schedule comes
+<strong>Then</strong>
+New podcasts to be transcribed, summarized and send over email to me</p>
+<p>As a final result I want to get an email like this
+<img src="/tech/podcast_email.png" alt="Alt Text"  height="400"></p>
+<!-- ![Email Picture](/tech/podcast_email.png "Final Outcome") -->
+<h3 id="architecture-and-technology-choices">Architecture and Technology Choices<a hidden class="anchor" aria-hidden="true" href="#architecture-and-technology-choices">#</a></h3>
+<p>Let&rsquo;s divide the whole project in few major pieces:</p>
+<p><strong>Big Chunks / Epics</strong></p>
+<ul>
+<li>Get new episodes</li>
+<li>Transcribe those in text files</li>
+<li>Summarize those and store summaries</li>
+<li>Send email
+Also make sure don&rsquo;t re-transcribe or re-summarize same content as those are time consuming and potentially expensive</li>
+</ul>
+<p><strong>Overall Guardrails</strong> that I followed:</p>
+<ul>
+<li>Use local and open source models as much possible</li>
+<li>Use aws S3 for file storage and retrieval</li>
+<li>Use well known python libraries to perform text manipulation tasks</li>
+<li>Use  <a href="https://openai.com/index/whisper/" target="_blank">Whisper</a> for transcription</li>
+<li>Deploy code in github and use Github action to run this periodically</li>
+</ul>
+<p><code>I absolutely plan to experiment with other closed and frontier models</code></p>
+<p><strong>How it will work:</strong> Simply put, a driver script will first look for new episodes, transcribe them using Ollama, store transcription in S3, Summarize them (and convert into nicer html), store them for reuse and finally send over email. All these will run in Github actions instance at 6 am Central Time</p>
+<p><strong>High Level Components</strong>
+<img src="/tech/overall-picture.png" alt="Component Diagram"  height="500"></p>
+<p><strong>Sequence Diagram</strong>
+<div class="mermaid">
+    
+sequenceDiagram
+    participant actions as Github Actions
+    participant feeds as Feed Stores
+    participant m as Monitor
+    participant t as Transcription
+    participant w as Whisper
+    participant s3 
+    participant summ as Summarizer
+    participant o as Ollama @ <br/>GitHub Actions
+
+    participant mail as Mailjet <br/>Engine
+    
+    actions -->actions: Wake up at 6 am central
+    actions -->actions: Run Scheduled Workflow which prepares the env
+    Note over m, feeds: Check for new feeds
+    actions ->m: starts the driver script
+    m -> m: If new Feed found <br/> create local file
+    
+    
+    m ->>t: Start Transcription
+    t->s3: check if transcription already done
+    Note over t, w: Transcribe new audio files
+    t->>s3: store transcribed files as json.dump <br/>preserving episode metadata
+    t->>m: transcription complete
+
+      
+    m->>summ: Summarize
+    summ ->> s3: compare transcription and <br/>summary file names <br/>to decide what <br/> needs to be summarized
+    Note over summ, o: Use local Ollama <br/> with LLama 3.2 to summarize
+    summ ->> m: Summarization Complete
+    m->>mail: Send Email
+
+
+</div></p>
+<h3 id="github-repo">Github Repo<a hidden class="anchor" aria-hidden="true" href="#github-repo">#</a></h3>
+<p>This is good time to introduce <strong><a href="https://github.com/rahulguha/podcast_monitor/" target="_blank">My Repo</a></strong>. All code used in this project are available there. I will explain code in high level in next sections</p>
+<ul>
+<li><strong>Config Files:</strong> content_monitor.json lists the podcasts that are monitored in this project. Structure is very obvious as you see here:</li>
+</ul>
+<pre tabindex="0"><code>{
+        &#34;category&#34;: [
+                        &#34;history&#34;,
+                        &#34;npr&#34;
+                    ],
+        &#34;name&#34;: &#34;NPR - Throughline&#34;,
+        &#34;FeedLink&#34;: &#34;https://feeds.npr.org/510333/podcast.xml&#34;
+    }
+</code></pre><p>Other configs available in environment variable are:</p>
+<pre tabindex="0"><code>CUTOFFDATE=&#34;2025/01/21&#34;
+TRANSCRIPTIONFOLDER=&#34;transcriptions&#34;
+S3_BUCKET=&#34;podcast.monitor&#34;
+</code></pre><ul>
+<li>
+<p><strong>Monitor:</strong> <code>monitor_podcast.py</code> - This loads the config json, looks at FeedLink field for new episodes and if found writes into a file called <code>to_be_processed.json</code>. The link points to the RSS feed for the podcast. In nutshell, RSS is a standard format for describing Blogs and Podcasts. It is typically published by the producer and has various fields that describes the production. <br/><sub>In case anyone wants to know more about RSS - here is <a href="https://en.wikipedia.org/wiki/RSS" target="_blank">WiKiPedia link</a>. </sub></p>
+</li>
+<li>
+<p><strong>Transcription:</strong> <code>transcribe.py</code>- This file is responsible for</p>
+<ul>
+<li>Looking into S3 bucket to see if the particular audio file is already transcribed or not</li>
+<li>If not, transcribe using whisper API call</li>
+<li>Store in s3 bucket (with date prefix) along with Metadata (Podcast Name, Episode Name etc ) for future use</li>
+</ul>
+</li>
+<li>
+<p><strong>Summarizer:</strong> <code>summerizer.py</code>- This file is responsible for</p>
+<ul>
+<li>Get a list of files to be summarized - it&rsquo;s done by looking into s3 bucket (<code>transcription</code> folder) for all date prefix</li>
+<li>Find if summary already exists for the specific transcription. This is also done by looking into <code>summary</code> folder</li>
+<li>If files to be summarized, this issues a prompt to <code>local ollama engine with Llama 3.2</code> for summary.</li>
+<li>Once summary is available, it calls another python library (<code>beautifulsoup</code>) to convert text to HTML</li>
+<li>Store the HTML fragment into s3 bucket (with date prefix) along with Metadata (Podcast Name, Episode Name etc ) for email</li>
+</ul>
+</li>
+<li>
+<p><strong>EMail:</strong> <code>email_client.py</code>- This file is responsible for</p>
+<ul>
+<li>Get all summary files from S3 buckets (obviously excluding the folders beyond cutoff date)</li>
+<li>Create a connection with mail server (in this case mailjet)</li>
+<li>Use designated template, send all summary file text for email to be sent</li>
+</ul>
+</li>
+<li>
+<p><strong>Driver Script:</strong> <code>monitor.py</code>- This is a simple driver script that calls all of the above functions sequentially</p>
+</li>
+<li>
+<p><strong>Deployment:</strong> <code>.github/workflows/scheduled-job.yml</code>- I chose github actions for running the whole project. In future iteration we will deploy this to other platforms too. This step following are done:</p>
+<ul>
+<li><strong>Schedule:</strong> Define cron for running the workflow daily at 6 am central</li>
+<li><strong>Setup Environment:</strong> Because of nature of the project, along with regular steps few extra steps needed to be added as follows:
+<ul>
+<li>Install ffpg - this is required for transcription</li>
+<li>Install Ollama - for running locally</li>
+<li>Setup API keys and secret for OpenAI, AWS and MailJet</li>
+</ul>
+</li>
+<li><strong>Execute driver:</strong> Run <code>monitor.py</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="outcome">Outcome<a hidden class="anchor" aria-hidden="true" href="#outcome">#</a></h3>
+<p>Every morning I receive email from this job with all episodes that were published after cutoff date. The job typically takes around 4-30 mins based on how many files need to be transcribed and summarized</p>
+<h3 id="observations">Observations<a hidden class="anchor" aria-hidden="true" href="#observations">#</a></h3>
+<p>This is first time I coded with significant help from Claude, OpenGPT, Gemini etc. My observations are documented in <a href="https://rahulguha.com/rants/llm-coding/" target="_blank">Code with LLM - first impressions</a></p>
+<h3 id="next-steps">Next Steps<a hidden class="anchor" aria-hidden="true" href="#next-steps">#</a></h3>
+<p>Following are the plans (not in same order) to enhance the scope of the project:</p>
+<ul>
+<li>Include Youtube Videos in the list of podcasts</li>
+<li>Experiment with other models to summarize the transcripts</li>
+<li>Accomplish same using agentic frameworks</li>
+<li>Look at other deployment options</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/tech/">Tech</a></li>
+      <li><a href="http://localhost:1313/tags/cybersecurity/">Cybersecurity</a></li>
+      <li><a href="http://localhost:1313/tags/llm/">LLM</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>Copyright @Rahul Guha</span> · 
+
+    <span>
+        Powered by Creativity,  
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
