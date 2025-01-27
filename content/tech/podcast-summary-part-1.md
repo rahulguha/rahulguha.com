@@ -63,6 +63,30 @@ Also make sure don't re-transcribe or re-summarize same content as those are tim
 **High Level Components**
 <img src="/tech/overall-picture.png" alt="Component Diagram"  height="500">
 
+**Flowchart:**
+{{< mermaid>}}
+
+graph TD;
+	__start__([Scheduled Job triggering<br/> at 6 am CST daily]):::first
+	driver(driver)
+	monitor(monitor and find <br/> latest episides)
+    transcribe(transcribe with <br/> Whisper)
+    summarizer(summarize <br/>transcriptions)
+    email(email with <br/>MailJet)
+	__end__(end):::last
+	__start__ --> driver;
+	driver --> monitor;
+    monitor --> localstorage;
+	driver --> transcribe;
+    transcribe -.->localstorage
+	transcribe <-->s3
+    driver --> summarizer;
+    summarizer<-->s3
+    email -->s3
+    driver --> email;
+	driver --> __end__;
+	
+{{</ mermaid>}}
 **Sequence Diagram**
 {{< mermaid >}}
 sequenceDiagram

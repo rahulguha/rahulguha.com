@@ -193,7 +193,33 @@ Also make sure don&rsquo;t re-transcribe or re-summarize same content as those a
 <p><strong>How it will work:</strong> Simply put, a driver script will first look for new episodes, transcribe them using Ollama, store transcription in S3, Summarize them (and convert into nicer html), store them for reuse and finally send over email. All these will run in Github actions instance at 6 am Central Time</p>
 <p><strong>High Level Components</strong>
 <img src="/tech/overall-picture.png" alt="Component Diagram"  height="500"></p>
-<p><strong>Sequence Diagram</strong>
+<p><strong>Flowchart:</strong>
+<div class="mermaid">
+    
+
+graph TD;
+	__start__([Scheduled Job triggering<br/> at 6 am CST daily]):::first
+	driver(driver)
+	monitor(monitor and find <br/> latest episides)
+    transcribe(transcribe with <br/> Whisper)
+    summarizer(summarize <br/>transcriptions)
+    email(email with <br/>MailJet)
+	__end__(end):::last
+	__start__ --> driver;
+	driver --> monitor;
+    monitor --> localstorage;
+	driver --> transcribe;
+    transcribe -.->localstorage
+	transcribe <-->s3
+    driver --> summarizer;
+    summarizer<-->s3
+    email -->s3
+    driver --> email;
+	driver --> __end__;
+	
+
+</div>
+<strong>Sequence Diagram</strong>
 <div class="mermaid">
     
 sequenceDiagram
