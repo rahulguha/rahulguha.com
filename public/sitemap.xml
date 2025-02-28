@@ -2,32 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tech/podcast-summary-part-1/</loc>
-    <lastmod>2025-01-26T11:13:35-06:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tech/</loc>
+    <lastmod>2025-02-28T18:15:07-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tech/podcast-summary-part-1/</loc>
     <lastmod>2025-01-26T11:13:35-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/rants/</loc>
     <lastmod>2025-01-20T21:56:56-06:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/tech/building-a-rag-system/</loc>
+    <lastmod>2025-02-28T18:15:07-06:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tech/how-this-site-is-built/</loc>
     <lastmod>2024-12-19T18:15:07-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/cybersecurity/</loc>
-    <lastmod>2025-01-26T11:13:35-06:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/llm/</loc>
-    <lastmod>2025-01-26T11:13:35-06:00</lastmod>
+    <lastmod>2025-02-28T18:15:07-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2025-01-26T11:13:35-06:00</lastmod>
+    <lastmod>2025-02-28T18:15:07-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-01-26T11:13:35-06:00</lastmod>
+    <lastmod>2025-02-28T18:15:07-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/tech/</loc>
-    <lastmod>2025-01-26T11:13:35-06:00</lastmod>
+    <lastmod>2025-02-28T18:15:07-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tech/rag/</loc>
+    <lastmod>2025-02-28T16:02:39-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/cybersecurity/</loc>
+    <lastmod>2025-02-28T16:02:39-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/general/</loc>
     <lastmod>2025-01-20T21:56:56-06:00</lastmod>

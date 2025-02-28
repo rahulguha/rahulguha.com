@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>How This Site Is Built | Rahul Guha</title>
-<meta name="keywords" content="tech, cybersecurity">
-<meta name="description" content="How this was built.">
+<title>Building a RAG System - Podcast Monitor Part 2 | Rahul Guha</title>
+<meta name="keywords" content="tech, LLM">
+<meta name="description" content="RAG - adding context to the LLM Query.">
 <meta name="author" content="Rahul Guha">
-<link rel="canonical" href="http://localhost:1313/tech/how-this-site-is-built/">
+<link rel="canonical" href="http://localhost:1313/tech/building-a-rag-system/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.23008b09bd00577341e0f373d3360479f325d3855f8cab1bf85a222f60757b71.css" integrity="sha256-IwCLCb0AV3NB4PNz0zYEefMl04VfjKsb&#43;FoiL2B1e3E=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
@@ -18,7 +18,7 @@
 <link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/tech/how-this-site-is-built/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/tech/building-a-rag-system/">
 <noscript>
     <style>
         #theme-toggle,
@@ -141,72 +141,135 @@
   <header class="post-header">
     
     <h1 class="post-title entry-hint-parent">
-      How This Site Is Built
+      Building a RAG System - Podcast Monitor Part 2
     </h1>
-    <div class="post-meta"><span title='2024-12-19 18:15:07 -0600 CST'>December 19, 2024</span>&nbsp;·&nbsp;Rahul Guha
+    <div class="post-meta"><span title='2025-02-28 18:15:07 -0600 CST'>February 28, 2025</span>&nbsp;·&nbsp;Rahul Guha
 
 </div>
   </header> 
-  <div class="post-content"><p>In this post I shall explain how this site is built.</p>
+  <div class="post-content"><p><a href="https://github.com/rahulguha/hybrid-rag" target="_blank">repo link</a>
+<img src="/tech/vector-rag-Page-2.png" alt="Architecture Layers"  height="500"></p>
+<h3 id="what-is-rag">What is RAG<a hidden class="anchor" aria-hidden="true" href="#what-is-rag">#</a></h3>
+<p>Retreival Augmented Generation aka RAG is when a system query local data store to build better context and use LLM to compose response. This serves followings:</p>
+<ul>
+<li>Adds context to the query so that LLM can respond more suitable manner</li>
+<li>Bridge the gap between LLM training lag with more recent data</li>
+<li>Potentially solve the data security problem as RAG can be run within private network</li>
+</ul>
+<h3 id="backstory">Backstory<a hidden class="anchor" aria-hidden="true" href="#backstory">#</a></h3>
+<p>I built a <a href="https://rahulguha.com/tech/podcast-summary-part-1/" target="_blank">Podcast Monitor System</a> where I monitor new episodes from a list of podcasts, transcribe them, summarize them and finally send email with the summaries and links. It is deployed in Github Actions and scheduled to run every morning. The transcripts are stored in S3.</p>
+<p>For reference, feel free to take a peek at <a href="https://github.com/rahulguha/podcast_monitor" target="_blank">My Github Repo</a></p>
+<p>So over time it built out some amount of corpus of transcribed podcasts. So I now want to build a RAG system on top of that so that I can chat with that corpus.</p>
+<p>To note, it&rsquo;s an interesting corpus as the podcasts are quite diverse that includes from NyTimes to Indian podcasts covering topics completely disjoined from each other.</p>
 <h3 id="requirements">Requirements<a hidden class="anchor" aria-hidden="true" href="#requirements">#</a></h3>
 <ul>
-<li>Simplicity - (I spent too much time before wrestling with Wordpress)</li>
-<li>SEO friendliness - obviously</li>
-<li>Have a fairly sophesticated mechanism for Tags, Categories and Menus. I would side with simoplicity over complex sophestication</li>
-<li>Write posts in VS code directly in markdown.</li>
-<li>Host free and sepend zero time managing deployments</li>
+<li>A Chat interface - (Where I can ask question and it will respond)</li>
+<li>Based on intent of question it should switch between giving me summary or answer</li>
+<li>It should always include sources (which podcast it refers to)</li>
 </ul>
-<h3 id="technology-choices">Technology Choices<a hidden class="anchor" aria-hidden="true" href="#technology-choices">#</a></h3>
-<p>Let me start from bottoms up.</p>
-<p><strong>Hosting Service:</strong> I knew I will host in one of the static site hosting services - so choice between netlify vs github pages. Chose Github only because of my familiarity, same platform (as code will be staying in github). Very limited exposure to other platforms except aws cloudfront (through s3) which was more complex to run and may cost you few dimes (very less but there is a billing).</p>
-<p><strong>Framework Choice:</strong> Again my previous experience in HUGO played a role. I liked it always because of performance, matured user base, wide template support and close integration with github. However I tried with few themes but finally sticked with Papermod - because of simplicity. I think HUGO is less opinianated in terms of order of config variables and felt too flexible for various theme builders make things more complex. But features drive complexity - and that&rsquo;s understandable. I also checked out few other frameworks like 11ty, jeykill, gatsby etc - but stayed with HUGO :)</p>
-<p><strong>Theme Choice:</strong> Spent sometime to find right theme in the collection of many many HUGO themes. This is where I have bit of dispair - as I moved from one theme to another, I expected they are mostly interchangable except few look and fill components. But they are NOT - From Config to location of static assets, HUGO is too flexible to allow theme developers to do things in their way. That complicates life of end users, who are using HUGO to essentially simplify their blogging life. But inconsistency in config and artifacts between themes caused me quite a bit time as I moved back to PaperMod from Clarity as the later was needing me to spend longer time to customize (although looks like it had more bells and whistles and I liked their color schema)</p>
-<p><strong>Github workflow:</strong>
-The code for this site is available in this repo.</p>
-<pre tabindex="0"><code>
-https://github.com/rahulguha/rahulguha.com
-</code></pre><p>The workflow code is quite standard one - available under .github/workflows folder. It executes in below order</p>
+<h3 id="technology-decisions">Technology Decisions<a hidden class="anchor" aria-hidden="true" href="#technology-decisions">#</a></h3>
+<p>There are few decision points of a typical RAG system.</p>
+<p><strong>What Kind of RAG will it be?</strong></p>
+<p>There are few RAG techniques:</p>
+<p>Each are essentially makes context buildup more sophisticated for better result.</p>
+<ul>
+<li>
+<p><strong>Vector/Sementic RAG</strong> - This essentially uses embedding and vector database and then search for similar chunks of stored vector data to build out context. This is simple, cheaper and probably adequately usable.</p>
+</li>
+<li>
+<p><strong>Hybrid RAG</strong> - This is a simpler concept building on top of Vector RAG. Here we deploy a keyword search capability (like bm25) along with vector search and build context with both results before sending to the LLM.</p>
+</li>
+<li>
+<p><strong>Graph RAG</strong> - This is quite specialized where we create a knowledge graph from the corpus - that creates a graph of keywords used in the corpus. There are few very good libraries available. I tried with <a href="https://github.com/microsoft/graphrag" target="_blank">Microsoft&rsquo;s graphrag</a> to create knowledge graph for part of my corpus. However, using that with openai makes it very expensive and slow. This is why I didn&rsquo;t apply for the whole corpus (or around 70 transcripts and growing).</p>
+</li>
+</ul>
+<p>I started with Vector RAG, played with Graph RAG - which do increase response quality significantly but expensive. Then looked at hybrid RAG. In couple of days I spent with it, I didn&rsquo;t see drastic improvement in response quality. So I stayed with traditional Vector RAG. However I added capability to understand the intent of question (in quite simple manner which can be improved in future) and create different chains pointing to different LLMs for different tasks.</p>
+<p><strong>Future Improvement:</strong></p>
+<ul>
+<li>Will integrate tools and agents in future.</li>
+<li>Evaluate concepts like Hybrid and contextual RAG more</li>
+</ul>
+<p><strong>Choice of Embeddings:</strong> OpenAI Embedding for now. It&rsquo;s bit expensive but fast. I tried local embeddings using ollama - but gets really slow for large corpus.</p>
+<p><strong>Choice of Vector Database:</strong> Chroma. This is quite abstracted capability - so can be easy to switch it with other data stores like FAISS if needed.</p>
+<p><strong>Choice of LLM for Q&amp;A:</strong> OpenAI for now, mainly because of convenience. But plan to try out others too in future.</p>
+<p><strong>Choice of LLM for Summary:</strong> Ollama with Gemma2:Latest. Typically transcripts are larger than context window for any close-soruce LLMs, so again I have to chunk and manage chunks. Also running it locally is inexpensive, takes less than 1 mins in my Macbook.</p>
+<p><strong>Framework Choice:</strong> For this project, I used LangChain and it works. However few comments/observations:</p>
+<ul>
+<li>It&rsquo;s bit complex and not very intuitive.</li>
+<li>It changes frequently and you start seeing warnings. So you need to keep upgrading. To their credit, they have a tool that would keep versions and dependencies in sync. But I think building same project without langchain will be one of the next things I would take up.</li>
+</ul>
+<p><strong>Logging:</strong> This was simple choice. As I am already using S3 for files staging, using that for logs was logical.</p>
+<p><strong>Source Repo:</strong> GITHUB - Here is the <a href="https://github.com/rahulguha/hybrid-rag" target="_blank">repo link</a></p>
+<h2 id="architecture">Architecture<a hidden class="anchor" aria-hidden="true" href="#architecture">#</a></h2>
+<img src="/tech/vector-rag-Page-1.png" alt="Architecture Layers"  height="500">
+<h3 id="vector-generation-sequence">Vector Generation Sequence<a hidden class="anchor" aria-hidden="true" href="#vector-generation-sequence">#</a></h3>
 <div class="mermaid">
     
-flowchart TD
-subgraph Setup
-A[Setup ubuntu-latest]
-B[Install Hugo CLI]
-C[Install sass]
-A --> B
-B --> C
-end
+sequenceDiagram %% diagram
+autonumber
+participant pre as Pre Loading
+participant s3 as AWS S3
+participant l as Local <br/>File Store
+participant c as Chunking Process
+participant oe as OpenAI Embedding <br/> Store
+participant e as Embedding Process
+participant v as Vector DB (Chroma)
 
-    subgraph Build
-        D[Get latest from main]
-        E[Install node & dependencies]
-        F[Build with hugo & copy to public]
-        D --> E
-        E -->|15min| F
-    end
+    pre->>s3: Download Transcriptions
+    s3->>l: Files
+    c->>l: Get files
+    c->>c: Create Chunks
+    c->>oe: Get Embedding
 
-    subgraph Deploy
-        G[Setup ubuntu]
-        H[Copy to github pages]
-        G --> H
-    end
 
-    C --> D
-    F --> G
-
-    %% Adding time annotations
-    style E fill:#f9f,stroke:#333
-    style H fill:#bbf,stroke:#333
+    c->>e: Create embedding
+    c->>v: Store embedding in Vector Database
 
 
 </div>
-<p><strong>Github page and Domain setup:</strong>
-These are well defined steps as follows:</p>
-<ul>
-<li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site">Setup Github pages:</a></li>
-<li><a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">Configure Custom Domain:</a></li>
-<li><a href="https://gist.github.com/notTag/4a60598d018124c9ac4a7b1f3e2bac9a">Configure Domain Registrar (Namecheap for me):</a></li>
-</ul>
+<h3 id="retrieval-sequence">Retrieval Sequence<a hidden class="anchor" aria-hidden="true" href="#retrieval-sequence">#</a></h3>
+<div class="mermaid">
+    
+
+sequenceDiagram %% diagram
+autonumber
+% participant
+actor u as User
+participant q as Query <br/>Processor
+participant f as Find <br/> Intent
+participant v as Vector DB
+participant p as Prompt
+
+    participant m as Metadata <br/>Manager
+    participant l as Local <br/>File Store
+
+
+    u->>q: question
+    q->>f: Summary or QA
+        alt QA
+            q->>v: Get similar chunks <br/> Vector Search
+            q->>p: Build Prompt with context (chunks)
+            q->>m: Get Sources from metadata
+            create participant openai as OpenAI
+            q->>openai: Send Prompt
+            destroy openai
+            openai->>q: Response
+            q->>u: Resposne + Sources
+
+        else Summary
+            q->>v: Get similar chunks <br/> Vector Search
+            q->>m: Get Sources from metadata
+            q->>l: Get Full Episode from Local File Store
+            create participant o as Ollama
+            q->>o: Get Summary
+            destroy o
+            o->>q: Summary
+
+            q->>u: Summary + Sources
+        end
+
+
+</div>
 
 
   </div>
@@ -214,7 +277,7 @@ These are well defined steps as follows:</p>
   <footer class="post-footer">
     <ul class="post-tags">
       <li><a href="http://localhost:1313/tags/tech/">Tech</a></li>
-      <li><a href="http://localhost:1313/tags/cybersecurity/">Cybersecurity</a></li>
+      <li><a href="http://localhost:1313/tags/llm/">LLM</a></li>
     </ul>
   </footer>
 </article>

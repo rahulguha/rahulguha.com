@@ -4,6 +4,7 @@ title: Rahul Guha
 homeinfo: Whatever
 copyright: Copyright @Rahul Guha
 theme: ["PaperMod"]
+buildFuture: true
 enableEmoji: true
 params:
   assets:
@@ -22,7 +23,7 @@ params:
     imageTitle: "Rahul Guha Home Page Image" # optional
     imageWidth: 220
     imageHeight: 300
-    
+
     buttons:
       - name: "Technology Blogs"
         url: "/tech"
@@ -68,4 +69,3 @@ menu:
     #   name: example.org
     #   url: https://example.org
     #   weight: 30
-  

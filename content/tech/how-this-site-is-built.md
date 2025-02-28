@@ -8,7 +8,6 @@ author: ['Rahul Guha']
 draft: false
 aliases: [/tech/how-this-site-was-built]
 Mermaid: true
-weight: 3
 ---
 
 In this post I shall explain how this site is built.
@@ -44,13 +43,13 @@ The workflow code is quite standard one - available under .github/workflows fold
 
 {{< mermaid >}}
 flowchart TD
-    subgraph Setup
-        A[Setup ubuntu-latest]
-        B[Install Hugo CLI]
-        C[Install sass]
-        A --> B
-        B --> C
-    end
+subgraph Setup
+A[Setup ubuntu-latest]
+B[Install Hugo CLI]
+C[Install sass]
+A --> B
+B --> C
+end
 
     subgraph Build
         D[Get latest from main]
@@ -72,11 +71,12 @@ flowchart TD
     %% Adding time annotations
     style E fill:#f9f,stroke:#333
     style H fill:#bbf,stroke:#333
+
 {{< /mermaid >}}
 
 **Github page and Domain setup:**
 These are well defined steps as follows:
-- [Setup Github pages:](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site) 
-- [Configure Custom Domain:](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site) 
-- [Configure Domain Registrar (Namecheap for me):](https://gist.github.com/notTag/4a60598d018124c9ac4a7b1f3e2bac9a) 
 
+- [Setup Github pages:](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)
+- [Configure Custom Domain:](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
+- [Configure Domain Registrar (Namecheap for me):](https://gist.github.com/notTag/4a60598d018124c9ac4a7b1f3e2bac9a)

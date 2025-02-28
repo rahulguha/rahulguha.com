@@ -187,7 +187,7 @@ Also make sure don&rsquo;t re-transcribe or re-summarize same content as those a
 <li>Use local and open source models as much possible</li>
 <li>Use aws S3 for file storage and retrieval</li>
 <li>Use well known python libraries to perform text manipulation tasks</li>
-<li>Use  <a href="https://openai.com/index/whisper/" target="_blank">Whisper</a> for transcription</li>
+<li>Use <a href="https://openai.com/index/whisper/" target="_blank">Whisper</a> for transcription</li>
 <li>Deploy code in github and use Github action to run this periodically</li>
 </ul>
 <p><code>I absolutely plan to experiment with other closed and frontier models</code></p>
@@ -199,56 +199,55 @@ Also make sure don&rsquo;t re-transcribe or re-summarize same content as those a
     
 
 graph TD;
-	__start__([Scheduled Job triggering<br/> at 6 am CST daily]):::first
-	driver(driver)
-	monitor(monitor and find <br/> latest episides)
-    transcribe(transcribe with <br/> Whisper)
-    summarizer(summarize <br/>transcriptions)
-    email(email with <br/>MailJet)
-	__end__(end):::last
-	__start__ --> driver;
-	driver --> monitor;
-    monitor --> localstorage;
-	driver --> transcribe;
-    transcribe -.->localstorage
-	transcribe <-->s3
-    driver --> summarizer;
-    summarizer<-->s3
-    email -->s3
-    driver --> email;
-	driver --> __end__;
-	
+**start**([Scheduled Job triggering<br/> at 6 am CST daily]):::first
+driver(driver)
+monitor(monitor and find <br/> latest episides)
+transcribe(transcribe with <br/> Whisper)
+summarizer(summarize <br/>transcriptions)
+email(email with <br/>MailJet)
+**end**(end):::last
+**start** --> driver;
+driver --> monitor;
+monitor --> localstorage;
+driver --> transcribe;
+transcribe -.->localstorage
+transcribe <-->s3
+driver --> summarizer;
+summarizer<-->s3
+email -->s3
+driver --> email;
+driver --> **end**;
 
 </div>
 <strong>Sequence Diagram</strong>
 <div class="mermaid">
     
 sequenceDiagram
-    participant actions as Github Actions
-    participant feeds as Feed Stores
-    participant m as Monitor
-    participant t as Transcription
-    participant w as Whisper
-    participant s3 
-    participant summ as Summarizer
-    participant o as Ollama @ <br/>GitHub Actions
+participant actions as Github Actions
+participant feeds as Feed Stores
+participant m as Monitor
+participant t as Transcription
+participant w as Whisper
+participant s3
+participant summ as Summarizer
+participant o as Ollama @ <br/>GitHub Actions
 
     participant mail as Mailjet <br/>Engine
-    
+
     actions -->actions: Wake up at 6 am central
     actions -->actions: Run Scheduled Workflow which prepares the env
     Note over m, feeds: Check for new feeds
     actions ->m: starts the driver script
     m -> m: If new Feed found <br/> create local file
-    
-    
+
+
     m ->>t: Start Transcription
     t->s3: check if transcription already done
     Note over t, w: Transcribe new audio files
     t->>s3: store transcribed files as json.dump <br/>preserving episode metadata
     t->>m: transcription complete
 
-      
+
     m->>summ: Summarize
     summ ->> s3: compare transcription and <br/>summary file names <br/>to decide what <br/> needs to be summarized
     Note over summ, o: Use local Ollama <br/> with LLama 3.2 to summarize

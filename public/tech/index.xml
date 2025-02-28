@@ -4,11 +4,18 @@
     <title>Technology Articles on Rahul Guha</title>
     <link>http://localhost:1313/tech/</link>
     <description>Recent content in Technology Articles on Rahul Guha</description>
-    <generator>Hugo -- 0.140.0</generator>
+    <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
     <copyright>Copyright @Rahul Guha</copyright>
-    <lastBuildDate>Sun, 26 Jan 2025 11:13:35 -0600</lastBuildDate>
+    <lastBuildDate>Fri, 28 Feb 2025 18:15:07 -0600</lastBuildDate>
     <atom:link href="http://localhost:1313/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a RAG System - Podcast Monitor Part 2</title>
+      <link>http://localhost:1313/tech/building-a-rag-system/</link>
+      <pubDate>Fri, 28 Feb 2025 18:15:07 -0600</pubDate>
+      <guid>http://localhost:1313/tech/building-a-rag-system/</guid>
+      <description>RAG - adding context to the LLM Query.</description>
+    </item>
     <item>
       <title>Podcast Summary Part 1: Basics</title>
       <link>http://localhost:1313/tech/podcast-summary-part-1/</link>
