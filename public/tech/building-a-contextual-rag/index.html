@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Building a Contextual RAG - Podcast Monitor Part 3 | Rahul Guha</title>
+<meta name="keywords" content="tech, LLM, RAG, Contextual RAG">
+<meta name="description" content="Contextual RAG - adding context to the query.">
+<meta name="author" content="Rahul Guha">
+<link rel="canonical" href="http://localhost:1313/tech/building-a-contextual-rag/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.23008b09bd00577341e0f373d3360479f325d3855f8cab1bf85a222f60757b71.css" integrity="sha256-IwCLCb0AV3NB4PNz0zYEefMl04VfjKsb&#43;FoiL2B1e3E=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/tech/building-a-contextual-rag/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs" type="module"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    mermaid.initialize({ 
+      startOnLoad: true,
+      theme: 'neutral',
+      securityLevel: 'loose'
+    });
+  });
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+
+            
+            
+            <a href="http://localhost:1313/" accesskey="h" title="  (Alt + H)">
+                <img src="http://localhost:1313/logo.png" alt="" aria-label="logo"
+                    height="30"> </a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/tags/tech/" title="tech">
+                    <span>tech</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/rants/" title="rants">
+                    <span>rants</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/books/" title="books">
+                    <span>books</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="tags">
+                    <span>tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Building a Contextual RAG - Podcast Monitor Part 3
+    </h1>
+    <div class="post-meta"><span title='2025-02-28 18:15:07 -0600 CST'>February 28, 2025</span>&nbsp;·&nbsp;Rahul Guha
+
+</div>
+  </header> 
+  <div class="post-content"><p><a href="https://github.com/rahulguha/contextual_rag" target="_blank">repo link</a></p>
+<blockquote>
+<p>&#x1f4a1; <font color="red">All tools and models used here are exchangeable with other models and libraries.</font></p></blockquote>
+<img src="/tech/img/Contextual-Rag-chat-flow.webp" alt="Contextual RAG Chat flow"  height="500">
+<h4 id="chat-flow">Chat flow<a hidden class="anchor" aria-hidden="true" href="#chat-flow">#</a></h4>
+<h3 id="why-contextual-rag-">Why Contextual RAG ?<a hidden class="anchor" aria-hidden="true" href="#why-contextual-rag-">#</a></h3>
+<p>Check out my previous post on <a href="https://rahulguha.com/tech/building-a-rag-system/" target="_blank">Standard Vector based RAG</a></p>
+<p>The challenge with standard RAG is - chunking strategy. Because of limited context window, the corpus needs to be chunked into multiple pieces to store in a vector database. When a &ldquo;similarity search&rdquo; is executed for final response to be created by LLM, typically we get partial data. So LLM responses may not be rich enough.</p>
+<p>That accuracy can be significantly improved by this technique of contextual rag, where along with chunks, we also generate a context string by sending the whole document and the chunk to the LLM and store that with the chunks in the vector DB. On top of this, using reranking logic helps better search resultset ranking so that we can send a more effective context to the LLM for final response.
+<img src="/tech/img/Anthropic-contextual-rag-numbers..webp" alt="Graph Accuracy"  height="500"></p>
+<h4 id="source-anthropic-post">Source <a href="https://www.anthropic.com/news/contextual-retrieval" target="_blank">Anthropic Post </a><a hidden class="anchor" aria-hidden="true" href="#source-anthropic-post">#</a></h4>
+<h3 id="pre-processing">Pre Processing<a hidden class="anchor" aria-hidden="true" href="#pre-processing">#</a></h3>
+<p>Pre processing / chunking strategy is important. Steps used are:</p>
+<ul>
+<li>Split text using <a href="https://python.langchain.com/v0.1/docs/modules/data_connection/document_transformers/" target="_blank">Langchain Text Splitter </a>. This is used for it&rsquo;s ability to be sentence aware.</li>
+<li>Send to anthropic LLM along with whole document to get the context for the chunk.
+<blockquote>
+<p>&#x1f4a1; Sending whole document to LLM is bit expensive as it may use extra input token for same set of text for every chunk This can be minimized by using Anthropic&rsquo;s <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching" target="_blank">Prompt Caching feature</a></p></blockquote>
+</li>
+</ul>
+<h3 id="embedding-and-vector-store">Embedding and Vector Store<a hidden class="anchor" aria-hidden="true" href="#embedding-and-vector-store">#</a></h3>
+<p>Once chunked and context obtained from LLM, I store them in vector database. I use <a href=" https://www.voyageai.com/" target="_blank">VoyageAI </a> for embedding I use <code> voyage-3-large</code>. Also use local file for storage using voyageai library.
+<img src="/tech/img/contextual-rag-Contextual RAG Pre Processing.webp" alt="Architecture Layers"  height="500"></p>
+<h4 id="pre-processing-corpus">Pre-processing corpus<a hidden class="anchor" aria-hidden="true" href="#pre-processing-corpus">#</a></h4>
+<h3 id="chat-flow-1">Chat Flow<a hidden class="anchor" aria-hidden="true" href="#chat-flow-1">#</a></h3>
+<p>As the user input comes through, following steps are followed for every request:</p>
+<ul>
+<li>Get query embedding</li>
+<li><strong>Sementic Search: </strong> Search in local vector store using embedding to receive chunk text and contexts.</li>
+<li><strong>Rerank </strong> the result using <a href="https://cohere.com/rerank" target="_blank">Cohere Rerank</a></li>
+<li>Send the reranked chunks and context to LLM.</li>
+<li>LLM returns generated response to be sent to the user</li>
+</ul>
+<img src="/tech/img/Contextual-Rag-chat-flow.webp" alt="Contextual RAG Chat flow"  height="500">
+<h4 id="chat-flow-2">Chat flow<a hidden class="anchor" aria-hidden="true" href="#chat-flow-2">#</a></h4>
+<h3 id="backstory">Backstory<a hidden class="anchor" aria-hidden="true" href="#backstory">#</a></h3>
+<p>I built a <a href="https://rahulguha.com/tech/podcast-summary-part-1/" target="_blank">Podcast Monitor System</a> where I monitor new episodes from a list of podcasts, transcribe them, summarize them and finally send email with the summaries and links. It is deployed in Github Actions and scheduled to run every morning. The transcripts are stored in S3.</p>
+<p>For reference, feel free to take a peek at <a href="https://github.com/rahulguha/podcast_monitor" target="_blank">My Github Repo</a></p>
+<p>So over time it built out some amount of corpus of transcribed podcasts. So I now want to build a RAG system on top of that so that I can chat with that corpus.</p>
+<p>To note, it&rsquo;s an interesting corpus as the podcasts are quite diverse that includes from NyTimes to Indian podcasts covering topics completely disjoined from each other.</p>
+<p><strong>Future Improvement:</strong></p>
+<ul>
+<li>Will integrate tools and agents in future.</li>
+<li>Queries can be cached for farther improved ranking and reranking step improvement</li>
+<li>Integrate BM25 keyword search to add some more accuracy.</li>
+</ul>
+<p><strong>Choice of Embeddings:</strong> In previous RAG example, I used OpenAI Embedding. Switched to voyageai for experimenting. This can be changed quite easily based on needs and requirements.</p>
+<p><strong>Choice of Vector Database:</strong> VoyageAI for this project. However this is quite abstracted capability - so can be easy to switch it with other data stores like Chroma or FAISS if needed.</p>
+<p><strong>Choice of LLM for Q&amp;A:</strong> This project I used anthropic, but can be switched very easily</p>
+<p><strong>Framework Choice:</strong> In my previous post, I documented my observations on Langchain complexities. So in this one, I stayed away from that and used native LLM specific libraries (except text splitter) and actually liked those more than langchain.</p>
+<p><strong>Logging:</strong> This was simple choice. As I am already using S3 for files staging, using that for logs was logical.</p>
+<p><strong>Source Repo:</strong> GITHUB - Here is the <a href="https://github.com/rahulguha/contextual_rag" target="_blank">repo link</a></p>
+<h2 id="architecture">Architecture<a hidden class="anchor" aria-hidden="true" href="#architecture">#</a></h2>
+<img src="/tech/vector-rag-Page-1.png" alt="Architecture Layers"  height="500">
+<h3 id="pre-processing-sequence">Pre processing Sequence<a hidden class="anchor" aria-hidden="true" href="#pre-processing-sequence">#</a></h3>
+<div class="mermaid">
+    
+sequenceDiagram %% diagram
+autonumber
+participant pre as Pre Loading
+participant l as Local <br/>File Store
+participant c as Chunking Process
+participant e as voyager ai Embedding <br/> Store
+participant a as Anthropic
+participant v as Vector DB (Chroma)
+
+    pre->>l: Files
+    pre->>c: Chunk Files
+    c->>c: Create Chunks
+    c->>a: Get context for Chunk
+    c->>e: Get Embedding
+    c->>v: Store embedding in Vector Database
+
+
+</div>
+<h3 id="retrieval-sequence">Retrieval Sequence<a hidden class="anchor" aria-hidden="true" href="#retrieval-sequence">#</a></h3>
+<div class="mermaid">
+    
+
+sequenceDiagram %% diagram
+autonumber
+% participant
+actor u as User
+participant q as Query <br/>Processor
+participant s as Semantic Search
+participant e as voyager ai Embedding <br/> Store
+participant v as Vector DB
+participant r as Reranking Engine <br/> Cohere
+participant c as Chat Manager
+participant p as Build Prompt
+
+participant a as Anthropic
+
+    u->>q: question
+    q->>s: Semantic Search
+    s->>e: Query Embedding
+    s->>v: Search with embedding
+    v->>s: Chunks with context and metadata
+    s->>r: Rerank
+    r->>c: Reranked chunks
+    c->>c: add to memory
+    c->>p: build prompt
+    c->>a: Get response
+    c->>c: Add to memory
+    c->>u: chat response
+
+
+
+</div>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/tech/">Tech</a></li>
+      <li><a href="http://localhost:1313/tags/llm/">LLM</a></li>
+      <li><a href="http://localhost:1313/tags/rag/">RAG</a></li>
+      <li><a href="http://localhost:1313/tags/contextual-rag/">Contextual RAG</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>Copyright @Rahul Guha</span> · 
+
+    <span>
+        Powered by Creativity,  
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

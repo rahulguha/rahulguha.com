@@ -10,6 +10,13 @@
     <lastBuildDate>Fri, 28 Feb 2025 18:15:07 -0600</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Building a Contextual RAG - Podcast Monitor Part 3</title>
+      <link>http://localhost:1313/tech/building-a-contextual-rag/</link>
+      <pubDate>Fri, 28 Feb 2025 18:15:07 -0600</pubDate>
+      <guid>http://localhost:1313/tech/building-a-contextual-rag/</guid>
+      <description>Contextual RAG - adding context to the query.</description>
+    </item>
+    <item>
       <title>Building a RAG System - Podcast Monitor Part 2</title>
       <link>http://localhost:1313/tech/building-a-rag-system/</link>
       <pubDate>Fri, 28 Feb 2025 18:15:07 -0600</pubDate>

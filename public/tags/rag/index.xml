@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>RAG on Rahul Guha</title>
+    <link>http://localhost:1313/tags/rag/</link>
+    <description>Recent content in RAG on Rahul Guha</description>
+    <generator>Hugo -- 0.145.0</generator>
+    <language>en-us</language>
+    <copyright>Copyright @Rahul Guha</copyright>
+    <lastBuildDate>Fri, 28 Feb 2025 18:15:07 -0600</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/rag/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a Contextual RAG - Podcast Monitor Part 3</title>
+      <link>http://localhost:1313/tech/building-a-contextual-rag/</link>
+      <pubDate>Fri, 28 Feb 2025 18:15:07 -0600</pubDate>
+      <guid>http://localhost:1313/tech/building-a-contextual-rag/</guid>
+      <description>Contextual RAG - adding context to the query.</description>
+    </item>
+  </channel>
+</rss>
