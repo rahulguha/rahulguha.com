@@ -89,8 +89,6 @@ To note, it's an interesting corpus as the podcasts are quite diverse that inclu
 
 ## Architecture
 
-<img src="/tech/vector-rag-Page-1.png" alt="Architecture Layers"  height="500">
-
 ### Pre processing Sequence
 
 {{< mermaid >}}
@@ -142,6 +140,5 @@ participant a as Anthropic
     c->>a: Get response
     c->>c: Add to memory
     c->>u: chat response
-
 
 {{< /mermaid >}}
