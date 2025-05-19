@@ -19,7 +19,7 @@ weight: 3
 
 #### Context Diagram
 
-<img src="/tech/img/sse-mcp-client-server-docker.jpg/" alt="SSE MCP"  height="700">
+<img src="/tech/img/sse-mcp-client-server-docker.jpg" alt="SSE MCP"  height="700">
 
 ### Purpose of this post:
 
