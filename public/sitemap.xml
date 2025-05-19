@@ -3,10 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/tech/</loc>
-    <lastmod>2025-04-06T18:15:07-06:00</lastmod>
+    <lastmod>2025-05-19T18:15:07-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/rants/</loc>
     <lastmod>2025-01-20T21:56:56-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tech/mcp-servers-over-http-docker/</loc>
+    <lastmod>2025-05-19T18:15:07-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tech/mcp-servers-school-rag/</loc>
     <lastmod>2025-04-06T18:15:07-06:00</lastmod>
@@ -18,25 +21,31 @@
     <lastmod>2025-02-28T18:15:07-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/contextual-rag/</loc>
-    <lastmod>2025-04-06T18:15:07-06:00</lastmod>
+    <lastmod>2025-05-19T18:15:07-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/docker/</loc>
+    <lastmod>2025-05-19T18:15:07-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/llm/</loc>
-    <lastmod>2025-04-06T18:15:07-06:00</lastmod>
+    <lastmod>2025-05-19T18:15:07-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/mcp/</loc>
-    <lastmod>2025-04-06T18:15:07-06:00</lastmod>
+    <lastmod>2025-05-19T18:15:07-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/rag/</loc>
-    <lastmod>2025-04-06T18:15:07-06:00</lastmod>
+    <lastmod>2025-05-19T18:15:07-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2025-04-06T18:15:07-06:00</lastmod>
+    <lastmod>2025-05-19T18:15:07-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/sse/</loc>
+    <lastmod>2025-05-19T18:15:07-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-04-06T18:15:07-06:00</lastmod>
+    <lastmod>2025-05-19T18:15:07-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/tech/</loc>
-    <lastmod>2025-04-06T18:15:07-06:00</lastmod>
+    <lastmod>2025-05-19T18:15:07-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/cybersecurity/</loc>
     <lastmod>2025-01-26T11:13:35-06:00</lastmod>
